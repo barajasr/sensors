@@ -89,7 +89,10 @@ public class SensorsList extends Activity {
                         .show();
                 break;
             case Sensor.TYPE_PRESSURE: break;
-            case Sensor.TYPE_PROXIMITY: break;
+            case Sensor.TYPE_PROXIMITY:
+                intent = new Intent(SensorsList.this, ProximitySensor.class);
+                startActivity(intent);
+                break;
             case Sensor.TYPE_RELATIVE_HUMIDITY: break;
             case Sensor.TYPE_ROTATION_VECTOR: break;
             case Sensor.TYPE_SIGNIFICANT_MOTION: break;

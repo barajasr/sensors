@@ -34,6 +34,10 @@
             android:name="com.barajasr.sensors.AccelerometerSensor"
             android:label="@string/title_activity_accelerometer_sensor" >
         </activity>
+        <activity
+            android:name="com.barajasr.sensors.ProximitySensor"
+            android:label="@string/title_activity_proximity_sensor" >
+        </activity>
     </application>
 
 </manifest>

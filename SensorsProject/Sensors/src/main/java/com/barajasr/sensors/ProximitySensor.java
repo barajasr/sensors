@@ -10,37 +10,32 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.TextView;
 
-public class MagneticSensor extends Activity implements SensorEventListener{
+public class ProximitySensor extends Activity implements SensorEventListener{
     private SensorManager sensorManager = null;
     private Sensor sensor = null;
-    private final String xAxis = "X-Axis:";
-    private final String yAxis = "Y-Axis:";
-    private final String zAxis = "Z-Axis:";
-    private final String unit = "μT";
-    private TextView XAxis;
-    private TextView YAxis;
-    private TextView ZAxis;
+    private final String distance = "Distance:";
+    private final String unit = "cm";
+    private TextView distanceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.magnetic);
+        setContentView(R.layout.proximity);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         sensorManager.registerListener(this,
-                sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+                sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),
                 SensorManager.SENSOR_DELAY_NORMAL);
 
-        XAxis = (TextView)findViewById(R.id.magneticX);
-        YAxis = (TextView)findViewById(R.id.magneticY);
-        ZAxis = (TextView)findViewById(R.id.magneticZ);
+        distanceTextView = (TextView)findViewById(R.id.proximityDistance);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.magnetic_sensor, menu);
+        getMenuInflater().inflate(R.menu.proximity_sensor, menu);
         return true;
     }
 
@@ -56,9 +51,8 @@ public class MagneticSensor extends Activity implements SensorEventListener{
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        XAxis.setText(xAxis + " " + sensorEvent.values[0] + " " + unit);
-        YAxis.setText(yAxis + " " + sensorEvent.values[1] + " " + unit);
-        ZAxis.setText(zAxis + " " + sensorEvent.values[2] + " " + unit);
+        distanceTextView.setText(distance + " " +
+                sensorEvent.values[0] + " " + unit);
     }
 
     @Override

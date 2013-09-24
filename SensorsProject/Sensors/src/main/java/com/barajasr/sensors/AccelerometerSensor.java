@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.widget.TextView;
 
 public class AccelerometerSensor extends Activity implements SensorEventListener{
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
+    private SensorManager sensorManager = null;
+    private Sensor sensor = null;
     private final String xAxis = "X-Axis:";
     private final String yAxis = "Y-Axis:";
     private final String zAxis = "Z-Axis:";
@@ -27,11 +27,10 @@ public class AccelerometerSensor extends Activity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accelerometer);
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-        mSensorManager.registerListener(this,
-                mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this,
+                sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
                 SensorManager.SENSOR_DELAY_NORMAL);
 
         XAxis = (TextView)findViewById(R.id.accelerometerX);
@@ -49,12 +48,12 @@ public class AccelerometerSensor extends Activity implements SensorEventListener
 
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     protected void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);
+        sensorManager.unregisterListener(this);
     }
 
     @Override

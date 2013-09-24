@@ -12,7 +12,6 @@
         android:name="android.hardware.sensor.accelerometer"
         android:required="false" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -26,6 +25,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.barajasr.sensors.MagneticSensor"
+            android:label="@string/title_activity_magnetic_sensor" >
         </activity>
     </application>
 

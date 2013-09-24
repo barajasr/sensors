@@ -16,6 +16,9 @@ public class MagneticSensor extends Activity implements SensorEventListener{
     private final String xAxis = "X-Axis:";
     private final String yAxis = "Y-Axis:";
     private final String zAxis = "Z-Axis:";
+    private TextView XAxis;
+    private TextView YAxis;
+    private TextView ZAxis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,10 @@ public class MagneticSensor extends Activity implements SensorEventListener{
         mSensorManager.registerListener(this,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
                 SensorManager.SENSOR_DELAY_NORMAL);
+
+        XAxis = (TextView)findViewById(R.id.magneticX);
+        YAxis = (TextView)findViewById(R.id.magneticY);
+        ZAxis = (TextView)findViewById(R.id.magneticZ);
     }
 
 
@@ -50,9 +57,6 @@ public class MagneticSensor extends Activity implements SensorEventListener{
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        TextView XAxis = (TextView)findViewById(R.id.magneticX);
-        TextView YAxis = (TextView)findViewById(R.id.magneticY);
-        TextView ZAxis = (TextView)findViewById(R.id.magneticZ);
         XAxis.setText(xAxis + " " + sensorEvent.values[0] + " μT");
         YAxis.setText(yAxis + " " + sensorEvent.values[1] + " μT");
         ZAxis.setText(zAxis + " " + sensorEvent.values[2] + " μT");

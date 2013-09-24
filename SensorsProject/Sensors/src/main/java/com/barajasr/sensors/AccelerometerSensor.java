@@ -10,38 +10,40 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.TextView;
 
-public class MagneticSensor extends Activity implements SensorEventListener{
+public class AccelerometerSensor extends Activity implements SensorEventListener{
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private final String xAxis = "X-Axis:";
     private final String yAxis = "Y-Axis:";
     private final String zAxis = "Z-Axis:";
-    private final String unit = "μT";
+    private final String unit = "m/s²";
     private TextView XAxis;
     private TextView YAxis;
     private TextView ZAxis;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.magnetic);
+        setContentView(R.layout.accelerometer);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         mSensorManager.registerListener(this,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
                 SensorManager.SENSOR_DELAY_NORMAL);
 
-        XAxis = (TextView)findViewById(R.id.magneticX);
-        YAxis = (TextView)findViewById(R.id.magneticY);
-        ZAxis = (TextView)findViewById(R.id.magneticZ);
+        XAxis = (TextView)findViewById(R.id.accelerometerX);
+        YAxis = (TextView)findViewById(R.id.accelerometerY);
+        ZAxis = (TextView)findViewById(R.id.accelerometerZ);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.magnetic_sensor, menu);
+        getMenuInflater().inflate(R.menu.accelerometer_sensor, menu);
         return true;
     }
 

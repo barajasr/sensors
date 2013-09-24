@@ -30,6 +30,10 @@
             android:name="com.barajasr.sensors.MagneticSensor"
             android:label="@string/title_activity_magnetic_sensor" >
         </activity>
+        <activity
+            android:name="com.barajasr.sensors.AccelerometerSensor"
+            android:label="@string/title_activity_accelerometer_sensor" >
+        </activity>
     </application>
 
 </manifest>

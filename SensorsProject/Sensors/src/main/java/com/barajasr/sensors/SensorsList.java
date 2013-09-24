@@ -66,7 +66,10 @@ public class SensorsList extends Activity {
     private void launchSensor(int id) {
         Intent intent;
         switch (id) {
-            case Sensor.TYPE_ACCELEROMETER: break;
+            case Sensor.TYPE_ACCELEROMETER:
+                intent = new Intent(SensorsList.this, AccelerometerSensor.class);
+                startActivity(intent);
+                break;
             case Sensor.TYPE_AMBIENT_TEMPERATURE: break;
             case Sensor.TYPE_GAME_ROTATION_VECTOR: break;
             case Sensor.TYPE_GRAVITY: break;

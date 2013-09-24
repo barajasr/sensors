@@ -1,6 +1,7 @@
 package com.barajasr.sensors;
 
 import android.app.Service;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -49,37 +50,57 @@ public class SensorsList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-                // sensor id [1, 17]
+                // sensor id [1, 17], not counting TYPE_ALL = -1
                 String item = sensorList.get(position).getName() +
                         ":" + sensorList.get(position).getType();
-                Toast toast = Toast.makeText(getApplicationContext(), item, Toast.LENGTH_SHORT);
-                toast.show();
+                Toast.makeText(getApplicationContext(),
+                        item,
+                        Toast.LENGTH_SHORT)
+                        .show();
+                launchSensor(sensorList.get(position).getType());
             }
 
         });
     }
 
     private void launchSensor(int id) {
+        Intent intent;
         switch (id) {
-            case Sensor.TYPE_ACCELEROMETER:
-            case Sensor.TYPE_AMBIENT_TEMPERATURE:
-            case Sensor.TYPE_GAME_ROTATION_VECTOR:
-            case Sensor.TYPE_GRAVITY:
-            case Sensor.TYPE_GYROSCOPE:
-            case Sensor.TYPE_GYROSCOPE_UNCALIBRATED:
-            case Sensor.TYPE_LIGHT:
-            case Sensor.TYPE_LINEAR_ACCELERATION:
+            case Sensor.TYPE_ACCELEROMETER: break;
+            case Sensor.TYPE_AMBIENT_TEMPERATURE: break;
+            case Sensor.TYPE_GAME_ROTATION_VECTOR: break;
+            case Sensor.TYPE_GRAVITY: break;
+            case Sensor.TYPE_GYROSCOPE: break;
+            case Sensor.TYPE_GYROSCOPE_UNCALIBRATED: break;
+            case Sensor.TYPE_LIGHT: break;
+            case Sensor.TYPE_LINEAR_ACCELERATION: break;
             case Sensor.TYPE_MAGNETIC_FIELD:
-            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED:
-            case Sensor.TYPE_PRESSURE:
-            case Sensor.TYPE_PROXIMITY:
-            case Sensor.TYPE_RELATIVE_HUMIDITY:
-            case Sensor.TYPE_ROTATION_VECTOR:
-            case Sensor.TYPE_SIGNIFICANT_MOTION:
+                intent = new Intent(SensorsList.this, MagneticSensor.class);
+                startActivity(intent);
+                break;
+            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED: break;
+            case Sensor.TYPE_ORIENTATION:
+                Toast.makeText(getApplicationContext(),
+                        "Sensor.TYPE_ORIENTATION has been deprecated.",
+                        Toast.LENGTH_SHORT)
+                        .show();
+                break;
+            case Sensor.TYPE_PRESSURE: break;
+            case Sensor.TYPE_PROXIMITY: break;
+            case Sensor.TYPE_RELATIVE_HUMIDITY: break;
+            case Sensor.TYPE_ROTATION_VECTOR: break;
+            case Sensor.TYPE_SIGNIFICANT_MOTION: break;
+            case Sensor.TYPE_TEMPERATURE:
+                Toast.makeText(getApplicationContext(),
+                        "Sensor.TYPE_TEMPERATURE has been deprecated.",
+                        Toast.LENGTH_SHORT)
+                        .show();
+                break;
             default:
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Unrecognized sensor id", Toast.LENGTH_SHORT);
-                toast.show();
+                Toast.makeText(getApplicationContext(),
+                        "Unrecognized sensor id" + id,
+                        Toast.LENGTH_SHORT)
+                        .show();
         }
     }
 

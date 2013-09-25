@@ -58,9 +58,12 @@ public class AccelerometerSensor extends Activity implements SensorEventListener
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        XAxis.setText(xAxis + " " + sensorEvent.values[0] + " " + unit);
-        YAxis.setText(yAxis + " " + sensorEvent.values[1] + " " + unit);
-        ZAxis.setText(zAxis + " " + sensorEvent.values[2] + " " + unit);
+        XAxis.setText(xAxis + " " +
+                String.format("%.2f", sensorEvent.values[0]) + " " + unit);
+        YAxis.setText(yAxis + " " +
+                String.format("%.2f", sensorEvent.values[1]) + " " + unit);
+        ZAxis.setText(zAxis + " " +
+                String.format("%.2f", sensorEvent.values[2]) + " " + unit);
     }
 
     @Override

@@ -8,11 +8,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/name"
-            android:textSize="18dp" />
+            android:textSize="@dimen/sensor_name_size" />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/vendor"
-            android:textSize="8dp" />
+            android:textSize="@dimen/sensor_vendor_size" />
 
 </LinearLayout>
